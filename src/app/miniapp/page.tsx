@@ -26,9 +26,12 @@ export default function TelegramMiniApp() {
 
   const connectWallet = async () => {
     try {
-      const here = await HereWallet.connect();
-      const { accountId } = await here.authenticate();
-      setWallet(accountId)
+      const here = await HereWallet.connect({
+        botId: "HOTExampleConnectBot/app", // Your bot MiniApp
+        walletId: "herewalletbot/app", // HOT Wallet
+      });
+      console.log("Connected to HOT Wallet: ", here);
+      setWallet("lol");
     } catch (error) {
       console.error("Failed to connect to HOT Wallet:", error);
       // Handle the error (e.g., show an error message to the user)
